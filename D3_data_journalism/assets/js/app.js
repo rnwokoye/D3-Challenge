@@ -155,9 +155,9 @@ function boldUnboldAxisLabel() {
                 .on("mouseover", function(d) {
                     toolTip.show(d, this);
                 })
-                .on("mouseout", function(d) {
-                    toolTip.hide(d);
-                });
+                // .on("mouseout", function(d) {
+                //     toolTip.hide(d);
+                // });
     
     
         }).catch(error => console.log(error));
