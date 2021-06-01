@@ -75,13 +75,11 @@ function boldUnboldAxisLabel() {
 }
     function axisClickHandler() {
         var selected_id = d3.select(this).attr("id");
-        console.log("selected_id=", selected_id);
         if (d3.select(this).classed("x_axis_label"))
             axis_values.x = selected_id;
         else if (d3.select(this).classed("y_axis_label"))
             axis_values.y = selected_id;
     
-        console.log("axis_values=", axis_values);
         d3.select("svg").remove();
         refreshChart();
     }
@@ -92,8 +90,6 @@ function boldUnboldAxisLabel() {
         d3.csv("assets/data/data.csv").then(journalismData => {
     
             boldUnboldAxisLabel();
-    
-            console.log(journalismData);
     
             journalismData.forEach(row => {
                 row.id = +row.id;
@@ -109,7 +105,6 @@ function boldUnboldAxisLabel() {
             var yList = journalismData.map(row => row[axis_values.y]);
             var xDiff = d3.max(xList) - d3.min(xList);
             var yDiff = d3.max(yList) - d3.min(yList);
-            console.log(xList, yList);
     
             var xLinearScale = d3.scaleLinear()
                 .domain([d3.min(xList) - xDiff * 0.1, d3.max(xList) + xDiff * 0.1])
@@ -155,9 +150,6 @@ function boldUnboldAxisLabel() {
                 .on("mouseover", function(d) {
                     toolTip.show(d, this);
                 })
-                // .on("mouseout", function(d) {
-                //     toolTip.hide(d);
-                // });
     
     
         }).catch(error => console.log(error));
